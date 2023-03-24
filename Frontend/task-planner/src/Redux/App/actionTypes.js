@@ -1,0 +1,11 @@
+export const GET_REQUEST="GET_REQUEST";
+export const GET_ERROR="GET_ERROR";
+export const GET_SUCCESS="GET_SUCCESS";
+
+export const POST_REQUEST="POST_REQUEST";
+export const POST_ERROR="POST_ERROR";
+export const POST_SUCCESS="POST_SUCCESS";
+
+// export const REGISTER_LOADING="REGISTER_LOADING";
+// export const REGISTER_ERROR="REGISTER_ERROR";
+// export const REGISTER_SUCCESS="REGISTER_SUCCESS";

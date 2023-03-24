@@ -2,11 +2,15 @@ const express=require("express");
 
 require("dotenv").config();
 
+var cors = require('cors')
+
 const connection=require("./config/db")
 
 const app=express();
 
 app.use(express.json());
+ 
+app.use(cors())
 
 const {tasksRouter}=require("./routes/tasks.route")
 
