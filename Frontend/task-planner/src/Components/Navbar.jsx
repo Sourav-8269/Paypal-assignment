@@ -12,7 +12,7 @@ function Navbar() {
     zIndex="999"
     top="0"
     w="100%"
-     h="70px"
+     h="60px"
      px="50px"
      display="flex"
      justifyContent="space-between"

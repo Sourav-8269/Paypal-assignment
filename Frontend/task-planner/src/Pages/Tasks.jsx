@@ -4,10 +4,13 @@ import { deleteData, getData } from '../Redux/App/action';
 import "../Styles/tasks.css"
 import { useEffect } from 'react';
 import { useToast } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { color } from 'framer-motion';
 
 const Tasks = () => {
   const toast=useToast();
   const dispatch=useDispatch();
+  const navigate=useNavigate();
   const data=useSelector((state=>state.AppReducer.data))
   console.log(data)
   useEffect(() => {
@@ -46,6 +49,7 @@ const Tasks = () => {
           <th>Feature</th>
           <th>Status</th>
           <th>Assignee</th>
+          <th>Edit Task</th>
           <th>Delete Task</th>
         </tr>
       </thead>
@@ -55,8 +59,9 @@ const Tasks = () => {
             <td>{el.task}</td>
             <td>{el.bug}</td>
             <td>{el.feature}</td>
-            <td >{el.state?"Done":"Pending"}<br/><button>Change Status</button></td>
+            <td style={{backgroundColor:`${el.state?"red":"green"}`,color:"white"}} >{el.state?"Done":"Pending"}</td>
             <td>{el.assignee}</td>
+            <td style={{backgroundColor:"#1da1f2",color:"white",fontWeight:"bold",cursor:"pointer"}} onClick={()=>navigate(`/edit/${el._id}`)} >Edit</td>
             <td style={{backgroundColor:"red",color:"white",fontWeight:"bold",cursor:"pointer"}} onClick={()=>handleDelete(el._id)} >Delete</td>
           </tr>
         ))}

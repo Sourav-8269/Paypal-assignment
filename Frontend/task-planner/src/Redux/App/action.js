@@ -38,6 +38,24 @@ const PostError=()=>{
         type:types.POST_ERROR
     }
 }
+
+const updateRequest=()=>{
+    return {
+        type:types.UPDATE_REQUEST
+    }
+}
+
+const updateSuccess=()=>{
+    return {
+        type:types.UPDATE_SUCCESS,
+    }
+}
+
+const updateError=()=>{
+    return {
+        type:types.UPDATE_ERROR
+    }
+}
 // Get request
 const getData=()=>(dispatch)=>{
     dispatch(getRequest())
@@ -71,6 +89,16 @@ const deleteData=(id)=>(dispatch)=>{
     .catch((err)=>dispatch(getError()))
 }
 
+const updateData=(id,payload)=>(dispatch)=>{
+    dispatch(updateRequest());
+    return axios.patch(`http://localhost:8080/tasks/edit/${id}`,payload)
+    .then((res)=>{
+        dispatch(updateSuccess());
+        // alert("Task Deleted")
+    })
+    .catch((err)=>dispatch(updateError()))
+}
+
 // const getData=(page)=>(dispatch)=>{
 //     dispatch(getRequest())
 //     axios.get(`https://mock-server-app-2-3le7.onrender.com/companies?_limit=2&_page=${page}`)
@@ -101,4 +129,4 @@ const SortData=(sort)=>(dispatch)=>{
     .catch((err)=>dispatch(getError()))
 }
 
-export {getData,deleteData,addData}
+export {getData,deleteData,addData,updateData}

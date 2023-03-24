@@ -82,10 +82,10 @@ const AddTask=()=>{
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={handleSubmit} >
+            <Button onClick={onClose} colorScheme='blue' mr="3%" >Cancel</Button>
+            <Button onClick={handleSubmit} colorScheme='green' ml="3%" >
               Submit
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

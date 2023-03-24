@@ -60,6 +60,36 @@ tasksRouter.get("/",async (req,res)=>{
     }
 })
 
+tasksRouter.get("/search", async (req, res) => {
+    
+    // console.log(req.query.q)
+    try {
+        let data=await TaskModel.find({
+            "$or":[
+                {task:{$regex:req.query.q,$options:"i"}},
+                {assignee:{$regex:req.query.q,$options:"i"}}
+            ]
+          })
+          res.send(data)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+tasksRouter.get("/single/:id",async (req,res)=>{
+    const id=req.params.id;
+    try{
+        if(id){
+            const tasks=await TaskModel.findById({_id:id});
+            res.send(tasks); 
+        }else{
+            const tasks=await TaskModel.find();
+            res.send(tasks); 
+        }
+    }catch(err){
+        res.send("Something Went Wrong"+err);
+    }
+})
 
 tasksRouter.post("/add",async (req,res)=>{
     const data=req.body;
@@ -99,24 +129,6 @@ tasksRouter.put("/replace/:id",async (req,res)=>{
     }
 })
 
-tasksRouter.get("/search", async (req, res) => {
-    
-    console.log(req.query.q)
-    try {
-        let data=await TaskModel.find({
-            "$or":[
-                {task:{$regex:req.query.q,$options:"i"}},
-                {assignee:{$regex:req.query.q,$options:"i"}}
-            ]
-          })
-          res.send(data)
-          
-        
-        
-    } catch (error) {
-        console.log(error)
-    }
-})
 
 tasksRouter.delete("/delete/:id",async (req,res)=>{
     const id=req.params.id;
