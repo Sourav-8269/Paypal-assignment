@@ -30,7 +30,7 @@ const reducer = (state = initState, action) => {
             }
         case types.POST_SUCCESS:
             return {
-                ...state, isLoading: false, data: payload
+                ...state, isLoading: false,
             }
         default:
             return state

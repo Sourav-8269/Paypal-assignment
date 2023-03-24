@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Tasks from '../Components/Tasks'
+import Tasks from '../Pages/Tasks'
 
 const MainRoutes = () => {
   return (

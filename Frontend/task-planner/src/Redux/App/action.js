@@ -27,10 +27,9 @@ const PostRequest=()=>{
     }
 }
 
-const PostSuccess=(token)=>{
+const PostSuccess=()=>{
     return {
         type:types.POST_SUCCESS,
-        payload:token
     }
 }
 
@@ -39,8 +38,8 @@ const PostError=()=>{
         type:types.POST_ERROR
     }
 }
-
-const normalData=()=>(dispatch)=>{
+// Get request
+const getData=()=>(dispatch)=>{
     dispatch(getRequest())
     axios.get(`http://localhost:8080/tasks`)
     .then((res)=>{
@@ -50,15 +49,37 @@ const normalData=()=>(dispatch)=>{
     .catch((err)=>dispatch(getError()))
 }
 
-const getData=(page)=>(dispatch)=>{
-    dispatch(getRequest())
-    axios.get(`https://mock-server-app-2-3le7.onrender.com/companies?_limit=2&_page=${page}`)
+// Adding Data
+
+const addData=(payload)=>(dispatch)=>{
+    dispatch(PostRequest())
+    return axios.post(`http://localhost:8080/tasks/add`,payload)
     .then((res)=>{
-        // console.log(res)
-        dispatch(getSuccess(res.data))
+        console.log(res.data);
+        dispatch(PostSuccess())
+    })
+    .catch((err)=>dispatch(PostError()))
+}
+
+const deleteData=(id)=>(dispatch)=>{
+    dispatch(getRequest());
+    return axios.delete(`http://localhost:8080/tasks/delete/${id}`)
+    .then((res)=>{
+        console.log(res)
+        // alert("Task Deleted")
     })
     .catch((err)=>dispatch(getError()))
 }
+
+// const getData=(page)=>(dispatch)=>{
+//     dispatch(getRequest())
+//     axios.get(`https://mock-server-app-2-3le7.onrender.com/companies?_limit=2&_page=${page}`)
+//     .then((res)=>{
+//         // console.log(res)
+//         dispatch(getSuccess(res.data))
+//     })
+//     .catch((err)=>dispatch(getError()))
+// }
 
 const filterData=(type)=>(dispatch)=>{
     dispatch(getRequest())
@@ -80,4 +101,4 @@ const SortData=(sort)=>(dispatch)=>{
     .catch((err)=>dispatch(getError()))
 }
 
-export {getError,getRequest,getSuccess,PostError,PostRequest,PostSuccess,getData,filterData,SortData,normalData}
+export {getData,deleteData,addData}

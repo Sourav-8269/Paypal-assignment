@@ -1,18 +1,43 @@
 import React from 'react'
 import { useDispatch,useSelector } from 'react-redux';
-import { normalData } from '../Redux/App/action';
+import { deleteData, getData } from '../Redux/App/action';
 import "../Styles/tasks.css"
 import { useEffect } from 'react';
+import { useToast } from '@chakra-ui/react';
 
 const Tasks = () => {
+  const toast=useToast();
   const dispatch=useDispatch();
   const data=useSelector((state=>state.AppReducer.data))
   console.log(data)
   useEffect(() => {
-    dispatch(normalData())
+    dispatch(getData())
   }, []);
+
+  const handleDelete=(id)=>{
+    dispatch(deleteData(id))
+    .then(()=>{
+      dispatch(getData());
+      toast({
+        title: 'Deleted Task Successfully',
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    })
+    .catch(()=>{
+      toast({
+        title: 'Something Went Wrong',
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    })
+  }
   return (
-    <div>
+    <div style={{marginTop:"8%"}} >
         <table>
       <thead>
         <tr>
@@ -30,9 +55,9 @@ const Tasks = () => {
             <td>{el.task}</td>
             <td>{el.bug}</td>
             <td>{el.feature}</td>
-            <td>{el.state?"Done":"Pending"}</td>
+            <td >{el.state?"Done":"Pending"}<br/><button>Change Status</button></td>
             <td>{el.assignee}</td>
-            <td style={{backgroundColor:"red",color:"white",fontWeight:"bold"}} >Delete</td>
+            <td style={{backgroundColor:"red",color:"white",fontWeight:"bold",cursor:"pointer"}} onClick={()=>handleDelete(el._id)} >Delete</td>
           </tr>
         ))}
         {/* <!-- Append all the rows here  --> */}
