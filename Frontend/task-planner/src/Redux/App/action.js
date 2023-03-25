@@ -56,6 +56,25 @@ const updateError=()=>{
         type:types.UPDATE_ERROR
     }
 }
+
+const searchRequest=()=>{
+    return {
+        type:types.SEARCH_REQUEST
+    }
+}
+
+const searchSuccess=(payload)=>{
+    return {
+        type:types.SEARCH_SUCCESS,
+        payload
+    }
+}
+
+const searchError=()=>{
+    return {
+        type:types.SEARCH_ERROR
+    }
+}
 // Get request
 const getData=()=>(dispatch)=>{
     dispatch(getRequest())
@@ -98,6 +117,16 @@ const updateData=(id,payload)=>(dispatch)=>{
     .catch((err)=>dispatch(updateError()))
 }
 
+const searchData=(query)=>(dispatch)=>{
+    dispatch(searchRequest());
+    return axios.get(`http://localhost:8080/tasks/search?q=${query}`)
+    .then((res)=>{
+        dispatch(searchSuccess(res.data));
+        // alert("Task Deleted")
+    })
+    .catch((err)=>dispatch(searchError()))
+}
 
 
-export {getData,deleteData,addData,updateData}
+
+export {getData,deleteData,addData,updateData,searchData}

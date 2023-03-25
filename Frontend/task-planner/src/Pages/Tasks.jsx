@@ -42,9 +42,6 @@ const Tasks = () => {
   }
   return (
     <Box mt={["20%","15%","8%"]} >
-      <Box w="80%" m="auto" >
-        <Search/>
-      </Box>
         <table>
       <thead>
         <tr>
