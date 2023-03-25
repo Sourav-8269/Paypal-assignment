@@ -3,10 +3,8 @@ import { useDispatch,useSelector } from 'react-redux';
 import { deleteData, getData } from '../Redux/App/action';
 import "../Styles/tasks.css"
 import { useEffect } from 'react';
-import { useToast,Box } from '@chakra-ui/react';
+import { useToast,Box,Heading } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { color } from 'framer-motion';
-import Search from './Search';
 
 const Tasks = () => {
   const toast=useToast();
@@ -17,6 +15,9 @@ const Tasks = () => {
   useEffect(() => {
     dispatch(getData())
   }, []);
+
+
+ // Deleting Data from backend
 
   const handleDelete=(id)=>{
     dispatch(deleteData(id))
@@ -40,8 +41,12 @@ const Tasks = () => {
       })
     })
   }
+
   return (
     <Box mt={["20%","15%","8%"]} >
+      <Box w="80%" m="auto" >
+      <Heading size="lg" as="h1" fontWeight="" textAlign={"left"} mb="3%" >Sprint 28 March - 5 April </Heading>
+      </Box>
         <table>
       <thead>
         <tr>
@@ -66,7 +71,6 @@ const Tasks = () => {
             <td style={{backgroundColor:"red",color:"white",fontWeight:"bold",cursor:"pointer"}} onClick={()=>handleDelete(el._id)} >Delete</td>
           </tr>
         ))}
-        {/* <!-- Append all the rows here  --> */}
       </tbody>
     </table>
     </Box>

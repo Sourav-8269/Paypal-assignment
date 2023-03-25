@@ -57,6 +57,24 @@ const updateError=()=>{
     }
 }
 
+const deleteRequest=()=>{
+    return {
+        type:types.DELETE_REQUEST
+    }
+}
+
+const deleteSuccess=()=>{
+    return {
+        type:types.DELETE_SUCCESS,
+    }
+}
+
+const deleteError=()=>{
+    return {
+        type:types.DELETE_ERROR
+    }
+}
+
 const searchRequest=()=>{
     return {
         type:types.SEARCH_REQUEST
@@ -75,7 +93,9 @@ const searchError=()=>{
         type:types.SEARCH_ERROR
     }
 }
-// Get request
+
+// Get Data form backend
+
 const getData=()=>(dispatch)=>{
     dispatch(getRequest())
     axios.get(`https://real-blue-fly-wear.cyclic.app/tasks`)
@@ -85,44 +105,46 @@ const getData=()=>(dispatch)=>{
     .catch((err)=>dispatch(getError()))
 }
 
-// Adding Data
+// Adding Data 
 
 const addData=(payload)=>(dispatch)=>{
     dispatch(PostRequest())
     return axios.post(`https://real-blue-fly-wear.cyclic.app/tasks/add`,payload)
     .then((res)=>{
-        console.log(res.data);
         dispatch(PostSuccess())
     })
     .catch((err)=>dispatch(PostError()))
 }
 
+// Deleting Data from backend
+
 const deleteData=(id)=>(dispatch)=>{
-    dispatch(getRequest());
+    dispatch(deleteRequest());
     return axios.delete(`https://real-blue-fly-wear.cyclic.app/tasks/delete/${id}`)
     .then((res)=>{
-        console.log(res)
-        // alert("Task Deleted")
+       dispatch(deleteSuccess());
     })
-    .catch((err)=>dispatch(getError()))
+    .catch((err)=>dispatch(deleteError()))
 }
+
+// Updating Data using patch request
 
 const updateData=(id,payload)=>(dispatch)=>{
     dispatch(updateRequest());
     return axios.patch(`https://real-blue-fly-wear.cyclic.app/tasks/edit/${id}`,payload)
     .then((res)=>{
         dispatch(updateSuccess());
-        // alert("Task Deleted")
     })
     .catch((err)=>dispatch(updateError()))
 }
+
+// Searching Data of Assignee or Task from backend
 
 const searchData=(query)=>(dispatch)=>{
     dispatch(searchRequest());
     return axios.get(`https://real-blue-fly-wear.cyclic.app/tasks/search?q=${query}`)
     .then((res)=>{
         dispatch(searchSuccess(res.data));
-        // alert("Task Deleted")
     })
     .catch((err)=>dispatch(searchError()))
 }
