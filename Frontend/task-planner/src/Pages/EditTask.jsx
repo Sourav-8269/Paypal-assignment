@@ -38,7 +38,7 @@ const EditTask = () => {
           ...singleTask,
           task: res.data?.task,
           bug: res.data?.bug,
-          feature: res.data?.bug,
+          feature: res.data?.feature,
           assignee: res.data?.assignee,
           state: res.data?.state,
         });
