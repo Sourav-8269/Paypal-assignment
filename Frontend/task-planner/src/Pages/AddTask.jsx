@@ -20,7 +20,7 @@ const AddTask=()=>{
   const handleSubmit=(e)=>{
     e.preventDefault()
     if(task&&bug&&feature&&assignee){
-      const payload={task,bug,feature,assignee,status:false};
+      const payload={task,bug,feature,assignee,state:false};
       console.log(payload)
       if(payload){
         dispatch(addData(payload))
@@ -33,7 +33,11 @@ const AddTask=()=>{
             isClosable: true,
             position:"top"
           })
-          onClose()
+          onClose();
+          setassignee("");
+          settask("");
+          setbug("");
+          setfeature("");
         })
         }
     }else{
@@ -69,15 +73,15 @@ const AddTask=()=>{
 
             <FormControl mt={4}>
               <FormLabel>Bug</FormLabel>
-              <Input  ref={initialRef} placeholder='Enter Bug' value={bug} onChange={(e)=>setbug(e.target.value)}/>
+              <Input  placeholder='Enter Bug' value={bug} onChange={(e)=>setbug(e.target.value)}/>
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Feature</FormLabel>
-              <Input ref={initialRef} placeholder='Enter Feature' value={feature} onChange={(e)=>setfeature(e.target.value)}/>
+              <Input placeholder='Enter Feature' value={feature} onChange={(e)=>setfeature(e.target.value)}/>
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Assignee</FormLabel>
-              <Input  ref={initialRef} placeholder='Enter Assignee' value={assignee} onChange={(e)=>setassignee(e.target.value)}/>
+              <Input placeholder='Enter Assignee' value={assignee} onChange={(e)=>setassignee(e.target.value)}/>
             </FormControl>
           </ModalBody>
 

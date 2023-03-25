@@ -61,7 +61,6 @@ const getData=()=>(dispatch)=>{
     dispatch(getRequest())
     axios.get(`http://localhost:8080/tasks`)
     .then((res)=>{
-        console.log(res)
         dispatch(getSuccess(res.data))
     })
     .catch((err)=>dispatch(getError()))
@@ -99,34 +98,6 @@ const updateData=(id,payload)=>(dispatch)=>{
     .catch((err)=>dispatch(updateError()))
 }
 
-// const getData=(page)=>(dispatch)=>{
-//     dispatch(getRequest())
-//     axios.get(`https://mock-server-app-2-3le7.onrender.com/companies?_limit=2&_page=${page}`)
-//     .then((res)=>{
-//         // console.log(res)
-//         dispatch(getSuccess(res.data))
-//     })
-//     .catch((err)=>dispatch(getError()))
-// }
 
-const filterData=(type)=>(dispatch)=>{
-    dispatch(getRequest())
-    axios.get(`https://mock-server-app-2-3le7.onrender.com/companies?company_type=${type}`)
-    .then((res)=>{
-        // console.log(res)
-        dispatch(getSuccess(res.data))
-    })
-    .catch((err)=>dispatch(getError()))
-}
-
-const SortData=(sort)=>(dispatch)=>{
-    dispatch(getRequest())
-    axios.get(`https://mock-server-app-2-3le7.onrender.com/companies?_sort=cost_per_share&_order=${sort}`)
-    .then((res)=>{
-        // console.log(res)
-        dispatch(getSuccess(res.data))
-    })
-    .catch((err)=>dispatch(getError()))
-}
 
 export {getData,deleteData,addData,updateData}

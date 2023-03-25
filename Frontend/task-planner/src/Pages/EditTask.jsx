@@ -22,7 +22,7 @@ const EditTask = () => {
     const getsingleTask=(id)=>{
         axios.get(`http://localhost:8080/tasks/single/${id}`)
         .then((res)=>{
-            console.log(res.data)
+            // console.log(res.data)
             setSingleTask({
             ...singleTask,
             task:res.data?.task,

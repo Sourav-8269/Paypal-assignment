@@ -20,10 +20,10 @@ function Navbar() {
     //  bg={useColorModeValue('gray.100', 'gray.900')}
      bg={colorMode === "light" ? "#03a9f4" : "rgb(33,33,33)"}
      >
-     <Link style={{textDecoration:"none"}} onClick={()=>navigate("/")}><Text cursor="pointer" display={["none","block","block"]} fontFamily="sans-serif" fontSize="30px" fontWeight="bold">Task Planner</Text></Link>
-   <Box display="flex" width="20%" justifyContent="space-around">
+     <Link style={{textDecoration:"none"}} onClick={()=>navigate("/")}><Text cursor="pointer" display={["block","block","block"]} fontFamily="sans-serif" fontSize="30px" fontWeight="bold" color={colorMode=="light"?"#2D3748":"#DD6B20"} >Task Planner</Text></Link>
+   <Box display="flex" width="50%" justifyContent="flex-end">
     <AddTask/>
-    <Button onClick={toggleColorMode} >
+    <Button onClick={toggleColorMode} ml="4%" >
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
     </Button>
     <Box >

@@ -3,16 +3,17 @@ import { useDispatch,useSelector } from 'react-redux';
 import { deleteData, getData } from '../Redux/App/action';
 import "../Styles/tasks.css"
 import { useEffect } from 'react';
-import { useToast } from '@chakra-ui/react';
+import { useToast,Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { color } from 'framer-motion';
+import Search from './Search';
 
 const Tasks = () => {
   const toast=useToast();
   const dispatch=useDispatch();
   const navigate=useNavigate();
-  const data=useSelector((state=>state.AppReducer.data))
-  console.log(data)
+  const data=useSelector((state=>state.data))
+
   useEffect(() => {
     dispatch(getData())
   }, []);
@@ -40,7 +41,10 @@ const Tasks = () => {
     })
   }
   return (
-    <div style={{marginTop:"8%"}} >
+    <Box mt={["20%","15%","8%"]} >
+      <Box w="80%" m="auto" >
+        <Search/>
+      </Box>
         <table>
       <thead>
         <tr>
@@ -59,7 +63,7 @@ const Tasks = () => {
             <td>{el.task}</td>
             <td>{el.bug}</td>
             <td>{el.feature}</td>
-            <td style={{backgroundColor:`${el.state?"red":"green"}`,color:"white"}} >{el.state?"Done":"Pending"}</td>
+            <td style={{backgroundColor:`${el.state?"green":"#ECC94B"}`,color:"white"}} >{el.state?"Done":"Pending"}</td>
             <td>{el.assignee}</td>
             <td style={{backgroundColor:"#1da1f2",color:"white",fontWeight:"bold",cursor:"pointer"}} onClick={()=>navigate(`/edit/${el._id}`)} >Edit</td>
             <td style={{backgroundColor:"red",color:"white",fontWeight:"bold",cursor:"pointer"}} onClick={()=>handleDelete(el._id)} >Delete</td>
@@ -68,7 +72,7 @@ const Tasks = () => {
         {/* <!-- Append all the rows here  --> */}
       </tbody>
     </table>
-    </div>
+    </Box>
   )
 }
 
