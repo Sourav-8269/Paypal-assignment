@@ -78,7 +78,7 @@ const searchError=()=>{
 // Get request
 const getData=()=>(dispatch)=>{
     dispatch(getRequest())
-    axios.get(`http://localhost:8080/tasks`)
+    axios.get(`https://real-blue-fly-wear.cyclic.app/tasks`)
     .then((res)=>{
         dispatch(getSuccess(res.data))
     })
@@ -89,7 +89,7 @@ const getData=()=>(dispatch)=>{
 
 const addData=(payload)=>(dispatch)=>{
     dispatch(PostRequest())
-    return axios.post(`http://localhost:8080/tasks/add`,payload)
+    return axios.post(`https://real-blue-fly-wear.cyclic.app/tasks/add`,payload)
     .then((res)=>{
         console.log(res.data);
         dispatch(PostSuccess())
@@ -99,7 +99,7 @@ const addData=(payload)=>(dispatch)=>{
 
 const deleteData=(id)=>(dispatch)=>{
     dispatch(getRequest());
-    return axios.delete(`http://localhost:8080/tasks/delete/${id}`)
+    return axios.delete(`https://real-blue-fly-wear.cyclic.app/tasks/delete/${id}`)
     .then((res)=>{
         console.log(res)
         // alert("Task Deleted")
@@ -109,7 +109,7 @@ const deleteData=(id)=>(dispatch)=>{
 
 const updateData=(id,payload)=>(dispatch)=>{
     dispatch(updateRequest());
-    return axios.patch(`http://localhost:8080/tasks/edit/${id}`,payload)
+    return axios.patch(`https://real-blue-fly-wear.cyclic.app/tasks/edit/${id}`,payload)
     .then((res)=>{
         dispatch(updateSuccess());
         // alert("Task Deleted")
@@ -119,7 +119,7 @@ const updateData=(id,payload)=>(dispatch)=>{
 
 const searchData=(query)=>(dispatch)=>{
     dispatch(searchRequest());
-    return axios.get(`http://localhost:8080/tasks/search?q=${query}`)
+    return axios.get(`https://real-blue-fly-wear.cyclic.app/tasks/search?q=${query}`)
     .then((res)=>{
         dispatch(searchSuccess(res.data));
         // alert("Task Deleted")

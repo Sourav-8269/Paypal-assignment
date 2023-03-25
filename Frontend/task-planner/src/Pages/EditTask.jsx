@@ -20,7 +20,7 @@ const EditTask = () => {
     })
 
     const getsingleTask=(id)=>{
-        axios.get(`http://localhost:8080/tasks/single/${id}`)
+        axios.get(`https://real-blue-fly-wear.cyclic.app/tasks/single/${id}`)
         .then((res)=>{
             // console.log(res.data)
             setSingleTask({

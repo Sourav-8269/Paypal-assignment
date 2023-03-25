@@ -4,52 +4,7 @@ const tasksRouter=express.Router();
 
 tasksRouter.use(express.json());
 
-// const {validator}=require("../middlewares/validator.middleware")
-
-// const {record}=require("../middlewares/record.middleware")
-
 const {TaskModel}=require("../models/tasks.model")
-
-// tasksRouter.get("/",async (req,res)=>{
-//     let sort=req.query.sort;
-//     let genre=req.query.genre;
-//     // console.log(sort)
-//     // console.log(genre)
-//     try{
-//         if(sort!=undefined&&genre!=undefined){
-//             if(sort=="price_low"){
-//                 const book=await BookModel.find({genre:genre}).sort({price:1});
-//                 res.send(book);
-//             }else if(sort=="price_high"){
-//                 const book=await BookModel.find({genre:genre}).sort({price:-1});
-//                 res.send(book);
-//             }else{
-//                 const book=await BookModel.find({genre:genre});
-//                 res.send(book);
-//             }
-//         }else if(sort!=undefined){
-//             if(sort=="price_low"){
-//                 const book=await BookModel.find().sort({price:1});
-//                 res.send(book);
-//             }else if(sort=="price_high"){
-//                 const book=await BookModel.find().sort({price:-1});
-//                 res.send(book);
-//             }else{
-//                 const book=await BookModel.find();
-//                 res.send(book);
-//             }
-//         }else if(genre!=undefined){
-//             const book=await BookModel.find({genre:genre});
-//             res.send(book);
-//         }else{
-//             const book=await BookModel.find();
-//             res.send(book);
-//         }
-//     }catch(err){
-//         res.send("Something Went Wrong"+err);
-        
-//     }
-// })
 
 tasksRouter.get("/",async (req,res)=>{
     try{
